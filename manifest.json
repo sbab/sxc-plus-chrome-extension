@@ -1,0 +1,39 @@
+{
+    "name": "SXC Plus",
+    "version": "1.0",
+    "description": "A Chrome extension to enhance your SixthContinent experience",
+    "manifest_version": 2,
+    "permissions": ["declarativeContent", "storage", "tabs", "downloads"],
+    "background": {
+        "scripts": ["lib/jquery-3.4.1.js", "src/background.js"],
+        "persistent": true
+    },
+    "options_ui": {
+      "page": "src/options.html",
+      "open_in_tab": false
+    },
+    "browser_action": {
+        "default_popup": "src/popup.html",
+        "matches": ["https://www.sixthcontinent.com/*"],
+        "default_icon": {
+          "16": "img/sxc-favicon-16x16.png",
+          "32": "img/sxc-favicon-32x32.png",
+          "48": "img/sxc-favicon.ico",
+          "128": "img/sxc-favicon-128x128.png"            
+        }
+    },
+    "content_scripts": [
+        {
+          "matches": ["https://www.sixthcontinent.com/*"],
+          "js": ["lib/jquery-3.4.1.js", "src/storage.js", "src/usedCards.js"]
+        },
+        {
+          "matches": ["https://www.sixthcontinent.com/*"],
+          "css": ["src/smartvoucher.css"],
+          "js": ["lib/jquery-3.4.1.js", "src/storage.js", "src/smartvoucher.js"]
+        }
+    ],
+    "icons": {
+      "48": "img/sxc-favicon.ico"          
+    }
+}

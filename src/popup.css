@@ -1,0 +1,9 @@
+.mainPopupDiv {
+    width: 300px;
+}
+
+input {
+    margin: 5px;
+    padding: 2px;
+    outline: none;
+}

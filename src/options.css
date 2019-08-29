@@ -1,0 +1,32 @@
+.mainOptionsDiv {
+    width: 500px;
+    height: 500px;
+}
+
+.errorMessage {
+    color: red;
+    font-style: italic;
+    font-size: small;
+}
+
+.normalMessage {
+    color: black;
+    font-style: italic;
+    font-size: small;
+}
+
+.successMessage {
+    color: green;
+    font-style: italic;
+    font-size: small;
+}
+
+.hiddenMessage {
+    display: none;
+}
+
+input {
+    margin: 5px;
+    padding: 2px;
+    outline: none;
+}
