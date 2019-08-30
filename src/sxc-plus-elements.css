@@ -26,6 +26,7 @@ div.sxc-plus-tooltip:hover span.sxc-plus-tooltipText {
 
 div.sxc-plus-tooltip {
     color:#ddd;
+    font-size: 14pt;
     padding:4px;
 }
 
@@ -58,4 +59,14 @@ div.sxc-plus-menu div.sxc-plus-logo {
     top: -13px;
     left:-13px;
     z-index: 1;
+}
+
+input.sxc-plus-checkbox {
+    margin: 5px;
+}
+
+label.sxc-plus-checkboxlabel {
+    color:#ddd;
+    margin: 2px;
+    font-size: 14pt;
 }

@@ -54,14 +54,11 @@ async function setCardColor(button, state) {
 }
 
 async function spuntalo_listener(event) {
-    let button = event.currentTarget;
-    let transaction_id = button.attributes["transactionId"].value;
-    
-    let oldCardState = await getCardState(transaction_id);
-    let newCardState = toggleCardState(oldCardState);
+    let checkbox = event.currentTarget;
+    let transaction_id = checkbox.attributes["transactionId"];
 
-    await setCardState(transaction_id, newCardState);
-    await setCardColor(button, newCardState);
+    await setCardState(transaction_id, (checkbox.checked ? 2 : 1));
+    await setCardColor(checkbox.parentNode, (checkbox.checked ? 2 : 1));
 }
 
 async function updateCardsList() {
@@ -81,13 +78,17 @@ async function updateCardsList() {
         let cardState = await getCardState(transactionId);
         await setCardColor(currentVDButton, cardState);
 
-        let newMenu = getNewMenu("sxcPlusMenu" + transactionId);
+        if (cardState != 0) {
+            let newMenu = getNewMenu("sxcPlusMenu" + transactionId);
 
-        let newButton = getNewButton("sxcPlusButton" + transactionId, "Usata", spuntalo_listener);
-        newButton.attributes["transactionId"] = transactionId;        
-        newMenu.insertBefore(newButton, null);
-        
-        par[i].insertBefore(newMenu, null);
+            let newCheckbox = getNewCheckbox("sxcPlusButton" + transactionId, cardState == 2, spuntalo_listener);
+            newCheckbox.attributes["transactionId"] = transactionId;        
+            newMenu.insertBefore(newCheckbox, null);
+
+            newMenu.insertBefore(getNewCheckboxLabel(null, "Usata"), null)
+            
+            par[i].insertBefore(newMenu, null);
+        }        
     }
 
     // par.append(async function (index, html) {

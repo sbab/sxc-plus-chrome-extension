@@ -38,15 +38,23 @@ function getNewButton(id, label, onClick) {
     return buttonElement;
 }
 
-function getNewCheckbox(id, text, onChange) {
-    let checkboxString = `<button id="${id}" class="sxc-plus-button">${text}</button>`
+function getNewCheckbox(id, checked, onChange) {
+    // let newLabel = getElementFromString(`<label class="sxc-plus-checkbox"></label>`);
+    let newInput = getElementFromString(`<input class="sxc-plus-checkbox" type="checkbox" id="${id}" ${(checked ? `checked="checked"`: "")}/>`);
 
-    let checkboxElement = getElementFromString(checkboxString);
-    
     if (onChange) {
-        checkboxElement.addEventListener("change", onChange);
+        newInput.addEventListener("change", onChange);
     }
 
-    return checkboxElement;
+    // newLabel.appendChild(newInput);
+    // newLabel.appendChild(document.createTextNode(text));
+
+    return newInput;
 }
 
+function getNewCheckboxLabel(id, text) {
+    return getElementFromString(
+        `<label class="sxc-plus-checkboxlabel"${(id ? ` id="${id}"` : ``)}>${text}</label>`
+    )
+
+}
