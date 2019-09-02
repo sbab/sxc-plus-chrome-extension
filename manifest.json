@@ -16,24 +16,29 @@
         "default_popup": "src/popup.html",
         "matches": ["https://www.sixthcontinent.com/*"],
         "default_icon": {
-          "16": "img/sxc-favicon-16x16.png",
-          "32": "img/sxc-favicon-32x32.png",
-          "48": "img/sxc-favicon.ico",
-          "128": "img/sxc-favicon-128x128.png"            
+          "16": "img/sxc-plus-logo-16x16.png",
+          "32": "img/sxc-plus-logo-32x32.png",
+          "48": "img/sxc-plus-logo-48x48.png",
+          "128": "img/sxc-plus-logo-128x128.png"            
         }
     },
     "content_scripts": [
         {
           "matches": ["https://www.sixthcontinent.com/*"],
-          "js": ["lib/jquery-3.4.1.js", "src/storage.js", "src/usedCards.js"]
+          "css": ["src/sxc-plus-elements.css", "src/mycards.css"],
+          "js": ["lib/jquery-3.4.1.js", "src/storage.js", "src/sxc-plus-elements.js", "src/mycards.js"]
         },
         {
           "matches": ["https://www.sixthcontinent.com/*"],
-          "css": ["src/smartvoucher.css"],
-          "js": ["lib/jquery-3.4.1.js", "src/storage.js", "src/smartvoucher.js"]
+          "css": ["src/sxc-plus-elements.css"],
+          "js": ["lib/jquery-3.4.1.js", "src/storage.js", "src/sxc-plus-elements.js", "src/smartvoucher.js"]
         }
     ],
     "icons": {
-      "48": "img/sxc-favicon.ico"          
-    }
+      "48": "img/sxc-plus-logo-48x48.png"          
+    },
+    "web_accessible_resources": [
+      "img/sxc-plus-logo-32x32.png",
+      "img/sxc-plus-logo.svg"
+    ]
 }

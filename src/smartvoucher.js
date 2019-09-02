@@ -51,7 +51,7 @@ function updateTooltips () {
     let promoClaims = $("div.promo-claim");
 
     if (promoClaims.length == 1) {
-        if (promoClaims.children("span.smartvoucher-activation-date-tooltip").length == 0) {
+        if (promoClaims.children("#sxc-plus-promo-claim-menu").length == 0) {
             let promoText = promoClaims[0].innerText;
             let promoRegexp = /Attivazione \d+/g
 
@@ -60,15 +60,17 @@ function updateTooltips () {
                 
                 if (promoMatches.length == 1) {
                     let giorniLav = parseInt(promoMatches[0].match(/\d+/)[0]);
+                    let dataAttivazioneMessage = "Se acquistata oggi, questa card sarà disponibile il giorno " + getDataAttivazione(giorniLav);
 
-                    let newTooltip = get_element_from_string("<span class=\"smartvoucher-activation-date-tooltip\">Se comprata oggi, la card sarà attiva in data " + getDataAttivazione(giorniLav) + "<span>");
-                    promoClaims[0].insertBefore(newTooltip, null);
+                    let newMenu = getNewMenu("sxc-plus-promo-claim-menu");
+
+                    newMenu.insertBefore(getNewTooltip("Data attivazione", dataAttivazioneMessage), null);
+
+                    promoClaims[0].insertBefore(newMenu, null);
                 }
             }
         }
     }
-
-    console.log("culo");
 }
 
 setInterval(updateTooltips, 100);
