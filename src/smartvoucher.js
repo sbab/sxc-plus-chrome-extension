@@ -9,33 +9,11 @@ function getDataAttivazione(numGiorni) {
         throw "getDataAttivazione()";
     }
 
-    const isFestaComandata = function (gg, mm) {
-        if (gg == null || typeof gg != "number" || mm == null || typeof mm != "number") {
-            throw "isFestaComandata()";
-        }
-        
-        switch ("" + mm + "/" + gg) {
-            case "1/1":
-            case "1/6":
-            case "4/25":
-            case "5/1":
-            case "6/2":
-            case "8/15":
-            case "11/1":
-            case "12/8":
-            case "12/25":
-            case "12/26":
-                return true;
-            default:
-                return false;
-        }
-    }
-
     let dataAttiv = new Date();
     let giorniRimanenti = numGiorni;
 
     while (giorniRimanenti > 0) {
-        if (!(dataAttiv.getDay() > 4) && !isFestaComandata(dataAttiv.getDate(), dataAttiv.getMonth() + 1)) {
+        if (dataAttiv.getDay() <= 4) {
             giorniRimanenti -= 1;
         }
 
